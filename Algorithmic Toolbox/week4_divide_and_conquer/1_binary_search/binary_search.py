@@ -30,6 +30,7 @@ import sys
 #         return -1
 
 def binary_search(a, x):
+    a.sort()
     left, right = 0, len(a)
     # write your code here
     i = len(a) // 2
@@ -48,13 +49,13 @@ def binary_search(a, x):
 
 
 if __name__ == '__main__':
-    # input_keys = list(map(int, input().split()))[1:]
-    # input_queries = list(map(int, input().split()))[1:]
-    input_keys = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    q = 4
-    # for q in input_queries:
-    #     print(binary_search(input_keys, q), end=' ')
-    print(binary_search(input_keys, q))
+    input_keys = list(map(int, input().split()))
+    input_queries = list(map(int, input().split()))
+    # input_keys = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    # q = 4
+    for q in input_queries:
+        print(binary_search(input_keys, q), end=' ')
+    # print(binary_search(input_keys, q))
 
 # if __name__ == '__main__':
 #     input = sys.stdin.read()
@@ -64,4 +65,4 @@ if __name__ == '__main__':
 #     a = data[1 : n + 1]
 #     for x in data[n + 2:]:
 #         # replace with the call to binary_search when implemented
-#         print(linear_search(a, x), end = ' ')
+#         print(binary_search(a, x), end = ' ')
