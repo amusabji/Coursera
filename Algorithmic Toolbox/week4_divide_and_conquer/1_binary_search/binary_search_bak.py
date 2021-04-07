@@ -18,6 +18,17 @@ def binary_search(a, x):
             continue
     return i    
 
+# left, right = 0, len(a) - 1
+    # i = 0
+    # while left <= right: 
+    #     i = (left + right) // 2
+    #     if x < a[i]:
+    #         right = i - 1
+    #     elif x > a[i]:
+    #         left = i + 1
+    #     else:
+    #         return i
+    # return -1
 
 def linear_search(a, x):
     for i in range(len(a)):
