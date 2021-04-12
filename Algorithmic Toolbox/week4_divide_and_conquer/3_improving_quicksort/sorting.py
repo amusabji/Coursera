@@ -1,31 +1,37 @@
 # Uses python3
 import sys
-import random
-
-def partition3(a, l, r):
-    #write your code here
-    pass
-
-def partition2(a, l, r):
-    x = a[l]
-    j = l
-    for i in range(l + 1, r + 1):
-        if a[i] <= x:
-            j += 1
-            a[i], a[j] = a[j], a[i]
-    a[l], a[j] = a[j], a[l]
-    return j
+from random import randint
 
 
-def randomized_quick_sort(a, l, r):
-    if l >= r:
+def partition3(array, left, right):
+    lt = left
+    i = left
+    gt = right
+    pivot = array[left]
+
+    while i <= gt:
+        if array[i] < pivot:
+            array[lt], array[i] = array[i], array[lt]
+            lt += 1
+            i += 1
+        elif array[i] > pivot:
+            array[i], array[gt] = array[gt], array[i]
+            gt -= 1
+        else:
+            i += 1
+
+    return lt, gt
+
+
+def randomized_quick_sort(array, left, right):
+    if left >= right:
         return
-    k = random.randint(l, r)
-    a[l], a[k] = a[k], a[l]
-    #use partition3
-    m = partition2(a, l, r)
-    randomized_quick_sort(a, l, m - 1);
-    randomized_quick_sort(a, m + 1, r);
+    k = randint(left, right)
+    array[left], array[k] = array[k], array[left]
+
+    lt, gt = partition3(array, left, right)
+    randomized_quick_sort(array, left, lt - 1)
+    randomized_quick_sort(array, gt + 1, right)
 
 
 if __name__ == '__main__':
