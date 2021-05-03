@@ -1,23 +1,12 @@
 # Uses python3
-def calc_fib(n):
+def fib(n, memo={}):
+    if n in memo:
+        return memo[n]
+    if n <= 2:
+        return 1
+    memo[n] = fib(n-1, memo) + fib(n-2, memo)
+    return memo[n]
 
-    a = 0
-    b = 1
-    c = 1
-
-    if n <= 1:
-        return n
-    else:
-        for i in range(1, n):
-            c = a + b
-            a = b
-            b = c
-        return c
-
-    # if (n <= 1):
-    #     return n
-
-    # return calc_fib(n - 1) + calc_fib(n - 2)
 
 n = int(input())
-print(calc_fib(n))
+print(fib(n))

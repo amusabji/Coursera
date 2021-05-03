@@ -5,11 +5,21 @@ from collections import namedtuple
 Segment = namedtuple('Segment', 'start end')
 
 def optimal_points(segments):
+    sorted_segments = sorted(segments, key=lambda x: x.end)
+
     points = []
-    #write your code here
-    for s in segments:
-        points.append(s.start)
-        points.append(s.end)
+    while sorted_segments:
+        # Place the first point to the right endpoint of the first segment.
+        # Remove the segment, since it's considered as covered one.
+        segment = sorted_segments.pop(0)
+        point = segment.end
+        points.append(point)
+
+        # Check whether the point hit the other segments.
+        for s in sorted_segments[:]:
+            if s.start <= point <= s.end:
+                sorted_segments.remove(s)
+
     return points
 
 if __name__ == '__main__':

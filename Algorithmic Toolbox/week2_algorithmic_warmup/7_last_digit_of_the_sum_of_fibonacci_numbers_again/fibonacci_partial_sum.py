@@ -1,22 +1,32 @@
 # Uses python3
 import sys
 
-def fibonacci_partial_sum_naive(from_, to):
-    sum = 0
+def fibonacci_partial_sum(n):
+    f0 = 0
+    f1 = 1
+ 
+    if (n == 0):
+        return 0
+    if (n == 1):
+        return 1
+    else:
 
-    current = 0
-    next  = 1
+        rem = n % 60
 
-    for i in range(to + 1):
-        if i >= from_:
-            sum += current
+        if(rem == 0):
+            return 0
 
-        current, next = next, current + next
-
-    return sum % 10
+        for i in range(2, rem + 3):
+            f =(f0 + f1)% 60
+            f0 = f1
+            f1 = f
+ 
+        s = f1-1
+        return(s)
 
 
 if __name__ == '__main__':
     input = sys.stdin.read();
     from_, to = map(int, input.split())
-    print(fibonacci_partial_sum_naive(from_, to))
+    ans = fibonacci_partial_sum(to)-fibonacci_partial_sum(from_-1)
+    print(ans % 10)
